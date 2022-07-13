@@ -4,7 +4,6 @@ class Solution(object):
         :type x: int
         :rtype: bool
         """
-        #print(x)
         # All negative numbers are not palindromes
         if x < 0:
             return False
@@ -18,8 +17,6 @@ class Solution(object):
             firstDigit = x / (10 ** currPower)
             lastDigit  = x % 10
             
-            #print([firstDigit, lastDigit])
-            
             if firstDigit != lastDigit:
                 return False
             
@@ -27,7 +24,6 @@ class Solution(object):
             x -= firstDigit * (10 ** currPower)
             x /= 10
             currPower -= 2
-            #print("after " + str(x))
             
         # True if x is one digit (or widdled down to it)
         return True
