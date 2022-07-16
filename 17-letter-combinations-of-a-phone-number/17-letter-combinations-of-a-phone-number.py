@@ -17,11 +17,14 @@ class Solution(object):
         
         combos = [""]
         for d in digits:
+            # Build upon last set 
             comsToAdd = []
             for l in numToLetters[int(d)]:
                 for combo in combos:
                     comsToAdd.append(combo + l)
+            # Replace old set with new, longer combos
             combos = comsToAdd
         
+        # Return blank array if no string was added
         return [] if combos == [""] else combos
         
