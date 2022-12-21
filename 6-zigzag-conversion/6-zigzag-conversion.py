@@ -26,7 +26,7 @@ class Solution(object):
 
                 # Catch end of string
                 if diagonalIndex >= len(s):
-                    continue # Maybe break should work
+                    break
                 
                 # Gets letters on diagonals
                 output += s[diagonalIndex]
