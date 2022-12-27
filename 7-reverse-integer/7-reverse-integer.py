@@ -18,7 +18,6 @@ class Solution(object):
             for i in range(1, 10):
                 xMod10i = x % (10**i)
                 reversedMax = REVERSED_MAX_32_VALUE % (10**i)
-                print("i:" + str(i) + "->" + str(xMod10i) + " " + str(reversedMax))
                 if xMod10i > reversedMax:
                     return 0
                 elif xMod10i < reversedMax:
