@@ -1,1 +1,1 @@
-Time: 193 ms (23.79%), Space: 13.7 MB (57.93%) - LeetHub
+Time: 87 ms (96.31%), Space: 13.8 MB (32.79%) - LeetHub
