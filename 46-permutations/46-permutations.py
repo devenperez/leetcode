@@ -7,8 +7,8 @@ class Solution:
             
             permutations = []
             for i in range(len(nums)):
-                 permutations += permute_with_prefix(nums[:i] + nums[(i + 1):], # Remove the ith element from nums
-                                                     prefix + [nums[i]])
+                 permutations.extend(permute_with_prefix(nums[:i] + nums[(i + 1):], # Remove the ith element from nums
+                                                         prefix + [nums[i]]))
             return permutations
         
         # Initial call
