@@ -1,11 +1,4 @@
 class Solution:
     def finalValueAfterOperations(self, operations: List[str]) -> int:
-        value = 0
         
-        for op in operations:
-            if op[1] == "+":
-                value += 1
-            else:
-                value -= 1
-                
-        return value
+        return sum(list(map(lambda x : 1 if x[1] == "+" else -1, operations)))
