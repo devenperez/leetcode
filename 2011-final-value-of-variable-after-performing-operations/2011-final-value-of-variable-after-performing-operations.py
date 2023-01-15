@@ -3,7 +3,7 @@ class Solution:
         value = 0
         
         for op in operations:
-            if "+" in [op[0], op[-1]]:
+            if op[1] == "+":
                 value += 1
             else:
                 value -= 1
