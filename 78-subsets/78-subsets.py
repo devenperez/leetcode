@@ -14,9 +14,8 @@ class Solution:
         powerSet = []
         
         for subsetBinary in range(2 ** len(nums)):
-            subset = [nums[i] for i in range(len(nums)) if (((2 ** len(nums) - 1) - (2 ** i)) | subsetBinary == (2 ** len(nums) - 1))]
+            subset = []
             
-            """
             # Iterates exactly n times (where n is the number of 1s in the binary string)
             while subsetBinary > 0:
                 indexOfFirst1 = -(math.floor(math.log2(subsetBinary)) + 1)
@@ -24,7 +23,6 @@ class Solution:
                 subset.append(nums[indexOfFirst1])
     
                 subsetBinary -= 2 ** (-indexOfFirst1 - 1)
-            """
         
             powerSet.append(subset)
         
