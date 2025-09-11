@@ -9,7 +9,7 @@ class Solution(object):
             return max(nums)
 
         # Subproblem: only nums 0 to i exist and i is always robbed
-        dp = [0] * len(nums)
+        dp = [0] * 3 # Optimized to only hold the last 3 entries
 
         dp[0] = nums[0]
         dp[1] = nums[1]
@@ -17,7 +17,8 @@ class Solution(object):
 
 
         for i in range(3, len(nums)):
-            dp[i] = nums[i] + max(dp[i - 2], dp[i - 3])
+            x = i % 3
+            dp[x] = nums[i] + max(dp[(x - 2) % 3], dp[x])
 
-        return max(dp[-1], dp[-2])
+        return max(dp)
         
