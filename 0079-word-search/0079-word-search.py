@@ -1,35 +1,41 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        def existFromStart(x: int, y: int, wordLeft: str, used: Set[Tuple[int, int]]):
-            if len(wordLeft) == 0:
-                return True
 
-            if board[x][y] != wordLeft[0]:
-                return False
-
-            if len(wordLeft) == 1:
-                return True
-
-            newUsed = used.union(set([(x, y)]))
-
-            if x + 1 < len(board) and (x+1,y) not in used and existFromStart(x + 1, y, wordLeft[1:], newUsed):
-                return True
-            
-            if x - 1 >= 0 and (x-1,y) not in used and existFromStart(x - 1, y, wordLeft[1:], newUsed):
-                return True
-
-            if y + 1 < len(board[x]) and (x,y+1) not in used and existFromStart(x, y + 1, wordLeft[1:], newUsed):
-                return True
-            
-            if y - 1 >= 0 and (x,y-1) not in used and existFromStart(x, y - 1, wordLeft[1:], newUsed):
-                return True
-
-            return False
-
+        startPoints = []
         for i in range(len(board)):
             for j in range(len(board[i])):
-                if existFromStart(i, j, word, set({})):
-                    return True
+                if board[i][j] == word[0]:
+                    startPoints.append((i, j))
 
+        def recur(i, j, restWord, seen):
+            if len(restWord) == 0:
+                return True
+
+            foundSolution = False
+
+            if i - 1 >= 0:
+                if board[i - 1][j] == restWord[0]:
+                    if (i - 1, j) not in seen:
+                        foundSolution |= recur(i - 1, j, restWord[1:], seen.union({(i - 1, j)}))
+            if j - 1 >= 0:
+                if board[i][j - 1] == restWord[0]:
+                    if (i, j - 1) not in seen:
+                        foundSolution |= recur(i, j - 1, restWord[1:], seen.union({(i, j - 1)}))
+
+            if i + 1 < len(board):
+                if board[i + 1][j] == restWord[0]:
+                    if (i + 1, j) not in seen:
+                        foundSolution |= recur(i + 1, j, restWord[1:], seen.union({(i + 1, j)}))
+            if j + 1 < len(board[i]):
+                if board[i][j + 1] == restWord[0]:
+                    if (i, j + 1) not in seen:
+                        foundSolution |= recur(i, j + 1, restWord[1:], seen.union({(i, j + 1)}))
+
+            return foundSolution
+
+        for sp in startPoints:
+            if recur(sp[0], sp[1], word[1:], set({(sp[0], sp[1])})):
+                return True
+        
         return False
-            
+        
