@@ -10,7 +10,8 @@ class Solution:
         # iterate over k+1...n - O(n) times
         #  - if larger than min in heap, replace min - O(log k)
         #  - else do nothing
-        for num in nums:
+        for i in range(k, len(nums)):
+            num = nums[i]
             if num > heap[0]:
                 heapq.heapreplace(heap, num)
 
