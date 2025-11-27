@@ -3,7 +3,7 @@ class Solution:
         """
         Complexities:
         Time:  O(n)
-        Space: O(1)
+        Space: O(n)
 
         where n = len(s)
         """
@@ -12,6 +12,21 @@ class Solution:
         if len(s) <= 1:
             return s
 
+
+
+        stack = ""
+        for letter in s:
+            stack += letter
+
+            if len(stack) >= 2 and stack[-2] != stack[-1] and stack[-2].lower() == stack[-1].lower():
+                stack = stack[:-2]
+
+        return stack
+
+
+
+
+"""
         # iterate over all letters
         # - compare s[i], s[i+1]
         # - if I remove, look at s[i-1]
@@ -26,3 +41,4 @@ class Solution:
                 i += 1
 
         return s
+"""
